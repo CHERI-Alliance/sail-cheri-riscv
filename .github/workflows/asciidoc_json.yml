@@ -1,10 +1,6 @@
 name: CI
 
-on:
-  pull_request:
-  workflow_dispatch:
-  push:
-    branches: ["master", "codasip"]
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -22,5 +18,10 @@ jobs:
       run: |
         sudo mkdir -p /usr/local
         curl --location https://github.com/rems-project/sail/releases/download/0.18-linux-binary/sail.tar.gz | sudo tar xvz --directory=/usr/local --strip-components=1
-    - name: Build simulators
-      run: make -j4 c_emulator/cheri_riscv_sim_RV{32,64}
+    - name: Build Asciidoc JSON bundle
+      run: make sail_doc/riscv_RV64.json
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: riscv_RV64.json
+        path: sail_doc/riscv_RV64.json

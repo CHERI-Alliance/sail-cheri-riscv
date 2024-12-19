@@ -196,7 +196,7 @@ function clause execute (GCBASE(rd, cs1)) = {
  *
  * gchi rd, cs1
  *
- * Copy the metadata (bits [CLEN-1:MXLEN]) of capability cs1 into rd.
+ * Copy the metadata (bits `[CLEN-1:MXLEN]`) of capability cs1 into rd.
  */
 function clause execute (GCHI(rd, cs1)) = {
   let capVal = C(cs1);
@@ -212,7 +212,7 @@ union clause ast = SCHI : (regidx, regidx, regidx)
  * schi cd, cs1, rs2
  *
  * Copy cs1  to cd , replace the capability metadata (i.e. bits
- * [CLEN-1:MXLEN]) with rs2  and set cd.tag to 0.
+ * `[CLEN-1:MXLEN]`) with rs2  and set cd.tag to 0.
  */
 function clause execute (SCHI(cd, cs1, rs2)) = {
   let capVal = C(cs1);
